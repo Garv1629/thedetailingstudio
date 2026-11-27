@@ -1,0 +1,603 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #060607;
+  --surface: #0e0e11;
+  --surface-elevated: #141418;
+  --ink: #ece8df;
+  --ink-secondary: #c9c5bc;
+  --ink-muted: #a6a299;
+  --line: rgba(236, 232, 223, 0.14);
+  --line-strong: rgba(236, 232, 223, 0.36);
+  --accent-warm: #e6c692;
+  --font-editorial: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Manrope', sans-serif;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--ink);
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  background-color: var(--bg);
+  color: var(--ink);
+  overflow-x: clip;
+  letter-spacing: 0.01em;
+}
+
+/* Strictly Cormorant Garamond (400 Regular / 500 Medium) for editorial headings */
+.font-editorial,
+.font-editorial-luxury,
+.font-display-expanded {
+  font-family: var(--font-editorial);
+  font-feature-settings: 'liga' 1, 'kern' 1, 'dlig' 1;
+  text-rendering: optimizeLegibility;
+  text-wrap: balance;
+}
+
+/* Strictly Manrope (400 Regular / 500 Medium / 600 SemiBold) for UI, nav, metadata, prices */
+.font-sans-atelier,
+.font-display-wide {
+  font-family: var(--font-sans);
+}
+
+.font-mono-atelier {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-metallic-ink {
+  background: linear-gradient(
+    180deg,
+    #fffdf8 0%,
+    #f5efe4 52%,
+    #dfd1b8 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-champagne-italic {
+  background: linear-gradient(
+    135deg,
+    #faf0dc 0%,
+    #e8cb99 54%,
+    #cba467 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-explore-link {
+  position: relative;
+}
+
+.hero-explore-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(230, 198, 146, 0.72) 0%,
+    rgba(236, 232, 223, 0.25) 100%
+  );
+  transform: scaleX(0.72);
+  transform-origin: left center;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 260ms ease;
+}
+
+.hero-explore-link:hover::after {
+  transform: scaleX(1);
+  background: #e6c692;
+}
+
+@keyframes heroEditorialRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-editorial-enter {
+  animation: heroEditorialRise 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Lightweight static studio micro-texture (zero continuous repaints on mobile/CPU) */
+.atelier-grain {
+  background-image: radial-gradient(rgba(236, 232, 223, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+  opacity: 0.25;
+}
+
+/* Smoked-obsidian luxury glassmorphism system */
+.glass-pill {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.11) 0%,
+    rgba(18, 18, 24, 0.56) 55%,
+    rgba(10, 10, 14, 0.72) 100%
+  );
+  backdrop-filter: blur(22px) saturate(175%);
+  -webkit-backdrop-filter: blur(22px) saturate(175%);
+  border: 1px solid rgba(236, 232, 223, 0.22);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.05),
+    0 14px 40px rgba(0, 0, 0, 0.48);
+}
+
+.glass-surface {
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.085) 0%,
+    rgba(16, 16, 22, 0.54) 48%,
+    rgba(8, 8, 12, 0.72) 100%
+  );
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(236, 232, 223, 0.18);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.04),
+    0 20px 56px rgba(0, 0, 0, 0.48);
+}
+
+.glass-surface-elevated {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.11) 0%,
+    rgba(18, 18, 24, 0.58) 44%,
+    rgba(9, 9, 13, 0.78) 100%
+  );
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border: 1px solid rgba(236, 232, 223, 0.22);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.26),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.06),
+    0 28px 72px rgba(0, 0, 0, 0.58);
+}
+
+.glass-card-interactive {
+  background: linear-gradient(
+    152deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(16, 16, 22, 0.52) 50%,
+    rgba(8, 8, 12, 0.72) 100%
+  );
+  backdrop-filter: blur(20px) saturate(165%);
+  -webkit-backdrop-filter: blur(20px) saturate(165%);
+  border: 1px solid rgba(236, 232, 223, 0.18);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
+    0 18px 48px rgba(0, 0, 0, 0.44);
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms ease,
+    box-shadow 260ms ease,
+    background-color 220ms ease;
+}
+
+.glass-card-interactive:hover {
+  border-color: rgba(236, 232, 223, 0.38);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.32),
+    0 24px 64px rgba(0, 0, 0, 0.58);
+}
+
+.glass-input {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.075) 0%,
+    rgba(16, 16, 22, 0.65) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(236, 232, 223, 0.22);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.glass-input:hover,
+.glass-input:focus {
+  border-color: rgba(236, 232, 223, 0.45);
+}
+
+/* Interactive Services section liquid-glass cards */
+.service-glass-card {
+  position: relative;
+  background: linear-gradient(
+    142deg,
+    rgba(255, 255, 255, 0.085) 0%,
+    rgba(22, 22, 29, 0.44) 48%,
+    rgba(10, 10, 15, 0.62) 100%
+  );
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid rgba(236, 232, 223, 0.16);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.04),
+    0 18px 48px rgba(0, 0, 0, 0.44);
+  transition:
+    background 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 340ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-glass-card:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(
+    142deg,
+    rgba(255, 255, 255, 0.115) 0%,
+    rgba(25, 25, 33, 0.5) 48%,
+    rgba(12, 12, 17, 0.68) 100%
+  );
+  border-color: rgba(236, 232, 223, 0.29);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.05),
+    0 24px 62px rgba(0, 0, 0, 0.54),
+    0 0 28px rgba(236, 232, 223, 0.05);
+}
+
+.service-glass-card-active {
+  position: relative;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(26, 26, 34, 0.62) 45%,
+    rgba(12, 12, 18, 0.78) 100%
+  );
+  backdrop-filter: blur(28px) saturate(185%);
+  -webkit-backdrop-filter: blur(28px) saturate(185%);
+  border: 1px solid rgba(236, 232, 223, 0.34);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.36),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.07),
+    0 30px 76px rgba(0, 0, 0, 0.64),
+    0 0 54px rgba(236, 232, 223, 0.1);
+  transition:
+    background 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-row-highlight {
+  background: linear-gradient(
+    90deg,
+    rgba(236, 232, 223, 0.46) 0%,
+    rgba(236, 232, 223, 0.14) 52%,
+    transparent 100%
+  );
+}
+
+@keyframes studioLightDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(32px, -18px, 0) scale(1.06);
+  }
+}
+
+.services-ambient-light {
+  animation: studioLightDrift 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+
+/* Pointer-reactive studio specular reflection along glass card bevel & surface */
+.service-glass-specular-border {
+  background: radial-gradient(
+    220px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(244, 239, 228, 0.62) 0%,
+    rgba(230, 198, 146, 0.24) 38%,
+    transparent 74%
+  );
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.service-glass-specular-sheen {
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(236, 232, 223, 0.14) 0%,
+    rgba(230, 198, 146, 0.04) 44%,
+    transparent 76%
+  );
+}
+
+/* Subtle magnetic pull on primary CTAs */
+.magnetic-cta {
+  transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+  will-change: transform;
+}
+
+.magnetic-cta:active {
+  transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) scale(0.98);
+}
+
+/* Refined studio intro curtain light sweep */
+@keyframes studioCurtainSweep {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.studio-curtain-beam {
+  animation: studioCurtainSweep 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Sculpted champagne-ivory luxury Get Directions CTA with satin light sweep */
+.luxury-directions-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #f6f0e3 0%,
+    #ead9bc 52%,
+    #dfc293 100%
+  );
+  border: 1px solid rgba(255, 248, 234, 0.72);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+    0 14px 34px rgba(0, 0, 0, 0.52),
+    0 0 26px rgba(230, 198, 146, 0.22);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms ease;
+}
+
+.luxury-directions-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 24%,
+    rgba(255, 255, 255, 0.62) 48%,
+    transparent 72%
+  );
+  transform: translate3d(-120%, 0, 0);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.luxury-directions-cta:hover {
+  transform: translate3d(var(--mag-x, 0px), calc(var(--mag-y, 0px) - 1px), 0);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    0 20px 44px rgba(0, 0, 0, 0.6),
+    0 0 38px rgba(230, 198, 146, 0.36);
+}
+
+.luxury-directions-cta:hover::before {
+  transform: translate3d(120%, 0, 0);
+}
+
+.luxury-directions-cta:active {
+  transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) scale(0.985);
+}
+
+/* Luxury Editorial Review Card & Champagne-Gold Studio Showcase Frame */
+.review-wet-glass-card {
+  background:
+    radial-gradient(
+      92% 68% at 6% 0%,
+      rgba(230, 198, 146, 0.16) 0%,
+      rgba(44, 35, 23, 0.28) 34%,
+      rgba(12, 12, 16, 0.9) 70%,
+      rgba(7, 7, 10, 0.97) 100%
+    ),
+    radial-gradient(
+      65% 55% at 100% 100%,
+      rgba(230, 198, 146, 0.08) 0%,
+      transparent 72%
+    );
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(230, 198, 146, 0.3);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 245, 224, 0.28),
+    inset 0 -1px 0 0 rgba(230, 198, 146, 0.1),
+    0 32px 84px rgba(0, 0, 0, 0.72),
+    0 0 46px rgba(230, 198, 146, 0.09);
+}
+
+.review-gold-frame {
+  border: 1px solid rgba(230, 198, 146, 0.56);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 245, 222, 0.36),
+    0 28px 74px rgba(0, 0, 0, 0.72),
+    0 0 40px rgba(230, 198, 146, 0.16);
+}
+
+.studio-map-iframe {
+  filter: grayscale(18%) invert(92%) hue-rotate(180deg) contrast(0.95) brightness(0.92);
+  transition: filter 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.studio-map-iframe:hover {
+  filter: grayscale(8%) invert(90%) hue-rotate(180deg) contrast(0.98) brightness(0.96);
+}
+
+.package-signature-card {
+  background: linear-gradient(
+    152deg,
+    rgba(230, 198, 146, 0.11) 0%,
+    rgba(22, 20, 18, 0.66) 44%,
+    rgba(9, 9, 13, 0.86) 100%
+  );
+  backdrop-filter: blur(24px) saturate(175%);
+  -webkit-backdrop-filter: blur(24px) saturate(175%);
+  border: 1px solid rgba(230, 198, 146, 0.36);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 245, 222, 0.34),
+    0 24px 64px rgba(0, 0, 0, 0.58),
+    0 0 36px rgba(230, 198, 146, 0.1);
+  transition:
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms ease,
+    box-shadow 260ms ease;
+}
+
+.package-signature-card:hover {
+  border-color: rgba(230, 198, 146, 0.64);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 248, 232, 0.48),
+    0 30px 76px rgba(0, 0, 0, 0.68),
+    0 0 48px rgba(230, 198, 146, 0.18);
+}
+
+/* Outlined architectural marquee typography */
+.marquee-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(236, 232, 223, 0.36);
+}
+
+/* Custom accessible range slider for the Paint Correction Inspection Light */
+input[type="range"].inspection-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"].inspection-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(236, 232, 223, 0.22);
+}
+
+input[type="range"].inspection-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  border-radius: 9999px;
+  background: #ece8df;
+  border: 2px solid #060607;
+  box-shadow: 0 0 0 1px rgba(236, 232, 223, 0.55);
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input[type="range"].inspection-slider:hover::-webkit-slider-thumb,
+input[type="range"].inspection-slider:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.14);
+}
+
+input[type="range"].inspection-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(236, 232, 223, 0.22);
+}
+
+input[type="range"].inspection-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #ece8df;
+  border: 2px solid #060607;
+  box-shadow: 0 0 0 1px rgba(236, 232, 223, 0.55);
+}
+
+/* WCAG AAA visible keyboard focus indicator */
+:focus-visible {
+  outline: 2px solid #ece8df;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atelier-grain {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Custom Yellow Porsche Cursor Interaction (Desktop + Touch Devices) */
+@media (hover: hover) and (pointer: fine) {
+  body.porsche-cursor-active,
+  body.porsche-cursor-active a,
+  body.porsche-cursor-active button,
+  body.porsche-cursor-active [role="button"],
+  body.porsche-cursor-active [role="tab"],
+  body.porsche-cursor-active [role="application"],
+  body.porsche-cursor-active label,
+  body.porsche-cursor-active input[type="range"],
+  body.porsche-cursor-active input[type="checkbox"] {
+    cursor: none !important;
+  }
+}
+
+.porsche-cursor-sprite[data-interactive="true"] img {
+  filter: drop-shadow(0 0 12px rgba(255, 214, 70, 0.55))
+    drop-shadow(0 6px 14px rgba(0, 0, 0, 0.85));
+}
+
+@keyframes porscheCursorRipple {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  100% {
+    width: 54px;
+    height: 54px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+.porsche-cursor-ripple {
+  animation: porscheCursorRipple 580ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 0 0 16px rgba(255, 214, 70, 0.45);
+}
+

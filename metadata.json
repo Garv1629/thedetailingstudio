@@ -1,0 +1,8 @@
+{
+  "name": "LUSTRE — Detailing Atelier",
+  "description": "Luxury automotive detailing atelier in Los Angeles offering multi-stage paint correction, 9H ceramic coating, self-healing protection film, and bespoke colour change wraps.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
