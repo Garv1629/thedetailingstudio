@@ -198,6 +198,7 @@ export function ScrollVideoSequence({
 }: ScrollVideoSequenceProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
+  const frameBoxRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const segmentsRef = useRef<VideoSequenceSegment[]>(segments);
   const activeWrapColourRef = useRef<WrapColourId | null>(activeWrapColourId);
@@ -235,9 +236,10 @@ export function ScrollVideoSequence({
   useEffect(() => {
     const container = containerRef.current;
     const stage = stageRef.current;
+    const frameBox = frameBoxRef.current ?? stage;
     const canvas = canvasRef.current;
     const activeSegments = segmentsRef.current;
-    if (!container || !stage || !canvas || totalFrames <= 0) return;
+    if (!container || !stage || !frameBox || !canvas || totalFrames <= 0) return;
 
     const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
@@ -289,7 +291,7 @@ export function ScrollVideoSequence({
     let isNearViewport = eagerPreload;
 
     const getDeviceBudgets = () => {
-      const stageW = Math.max(1, stage.clientWidth || window.innerWidth || 1440);
+      const stageW = Math.max(1, frameBox.clientWidth || window.innerWidth || 1440);
       const isCompact = stageW <= 768;
       return {
         maxConcurrent: isCompact ? 4 : 6,
@@ -442,8 +444,8 @@ export function ScrollVideoSequence({
     };
 
     const syncCanvasBuffer = () => {
-      const stageW = Math.max(1, Math.round(stage.clientWidth));
-      const stageH = Math.max(1, Math.round(stage.clientHeight));
+      const stageW = Math.max(1, Math.round(frameBox.clientWidth || stage.clientWidth));
+      const stageH = Math.max(1, Math.round(frameBox.clientHeight || stage.clientHeight));
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
       const optimal = computeOptimalVideoBufferSize(
@@ -683,8 +685,8 @@ export function ScrollVideoSequence({
           const target = computeOptimalVideoBufferSize(
             nativeWidth,
             nativeHeight,
-            stage.clientWidth || window.innerWidth || 1440,
-            stage.clientHeight || window.innerHeight || 900,
+            frameBox.clientWidth || stage.clientWidth || window.innerWidth || 1440,
+            frameBox.clientHeight || stage.clientHeight || window.innerHeight || 900,
             Math.min(window.devicePixelRatio || 1, 2),
           );
 
@@ -760,7 +762,7 @@ export function ScrollVideoSequence({
           lastDrawnFrameIndex === -1 ||
           Math.abs(index - currentFrameIndex) <= 1 ||
           Math.abs(index - currentFrameIndex) <
-            Math.abs(lastDrawnFrameIndex - currentFrameIndex)
+          Math.abs(lastDrawnFrameIndex - currentFrameIndex)
         ) {
           drawFrameToCanvas(currentFrameIndex, currentExactFrame, true);
         }
@@ -810,19 +812,19 @@ export function ScrollVideoSequence({
       const desired = prefersReducedMotion
         ? [anchorIndex, ...reducedMotionKeyframes]
         : buildPrioritizedPrefetchQueue(
-            anchorIndex,
-            totalFrames,
-            scrollDirection,
-            aheadCount,
-            behindCount,
-            includeInitial
-              ? getInitialPreloadIndices(
-                  totalFrames,
-                  8,
-                  pinnedJunctionFrames,
-                )
-              : pinnedJunctionFrames,
-          );
+          anchorIndex,
+          totalFrames,
+          scrollDirection,
+          aheadCount,
+          behindCount,
+          includeInitial
+            ? getInitialPreloadIndices(
+              totalFrames,
+              8,
+              pinnedJunctionFrames,
+            )
+            : pinnedJunctionFrames,
+        );
 
       const seen = new Set<number>();
       pendingQueue = desired.filter((idx) => {
@@ -905,15 +907,15 @@ export function ScrollVideoSequence({
     const observer =
       typeof IntersectionObserver !== 'undefined'
         ? new IntersectionObserver(
-            (entries) => {
-              if (entries.some((entry) => entry.isIntersecting)) {
-                isNearViewport = true;
-                schedulePrefetch(currentFrameIndex, true);
-                scheduleScrollUpdate();
-              }
-            },
-            { rootMargin: '600px 0px 600px 0px', threshold: 0 },
-          )
+          (entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+              isNearViewport = true;
+              schedulePrefetch(currentFrameIndex, true);
+              scheduleScrollUpdate();
+            }
+          },
+          { rootMargin: '600px 0px 600px 0px', threshold: 0 },
+        )
         : null;
 
     observer?.observe(container);
@@ -921,13 +923,16 @@ export function ScrollVideoSequence({
     const resizeObserver =
       typeof ResizeObserver !== 'undefined'
         ? new ResizeObserver(() => {
-            if (disposed) return;
-            syncCanvasBuffer();
-            updateFromScroll(true);
-          })
+          if (disposed) return;
+          syncCanvasBuffer();
+          updateFromScroll(true);
+        })
         : null;
 
     resizeObserver?.observe(stage);
+    if (frameBox !== stage) {
+      resizeObserver?.observe(frameBox);
+    }
     resizeObserver?.observe(container);
 
     syncCanvasBuffer();
@@ -993,57 +998,70 @@ export function ScrollVideoSequence({
       aria-label={ariaLabel}
       className="relative z-10 bg-[#060607]"
     >
-      {/* Single Continuous Pinned Full-Viewport Contain-Mode Frame Canvas Stage */}
+      {/* Continuous Pinned Contain-Mode Frame Canvas Stage:
+          - Mobile & portrait tablet (< lg): compact pinned top aspect-video stage directly under the navbar so the full 16:9 frame fits cleanly with zero vertical black voids
+          - Landscape laptop & desktop (>= lg): full-viewport 100svh stage behind overlaid editorial waypoints */}
       <div
         ref={stageRef}
-        className="sticky top-0 h-[100svh] w-full overflow-hidden bg-[#060607] pointer-events-none select-none flex items-center justify-center"
+        className="sticky top-0 z-20 w-full bg-[#060607] pt-[68px] sm:pt-[74px] md:pt-[78px] pb-2 sm:pb-3 lg:z-auto lg:h-[100svh] lg:p-0 lg:flex lg:items-center lg:justify-center pointer-events-none select-none"
       >
-        {/* Zero-flash initial poster matching exact object-fit: contain & object-position: center until frame 0 paints */}
-        {firstFrameUrl && !firstFrameReady && (
-          <img
-            src={firstFrameUrl}
-            alt=""
+        <div
+          ref={frameBoxRef}
+          className="relative mx-auto w-full aspect-video max-h-[46svh] overflow-hidden bg-[#060607] lg:max-h-none lg:aspect-auto lg:h-full"
+        >
+          {/* Zero-flash initial poster matching exact object-fit: contain & object-position: center until frame 0 paints */}
+          {firstFrameUrl && !firstFrameReady && (
+            <img
+              src={firstFrameUrl}
+              alt=""
+              aria-hidden="true"
+              decoding="async"
+              fetchPriority="high"
+              className="absolute inset-0 z-[1] block h-full w-full object-contain object-center select-none pointer-events-none"
+              style={{ objectFit: 'contain', objectPosition: 'center' }}
+            />
+          )}
+
+          <canvas
+            ref={canvasRef}
+            data-testid={`scroll-video-canvas-${sequenceId}`}
             aria-hidden="true"
-            decoding="async"
-            fetchPriority="high"
-            className="absolute inset-0 z-[1] block h-full w-full object-contain object-center select-none pointer-events-none"
+            width={DEFAULT_NATIVE_WIDTH}
+            height={DEFAULT_NATIVE_HEIGHT}
+            className="block h-full w-full object-contain object-center"
             style={{ objectFit: 'contain', objectPosition: 'center' }}
           />
-        )}
 
-        <canvas
-          ref={canvasRef}
-          data-testid={`scroll-video-canvas-${sequenceId}`}
-          aria-hidden="true"
-          width={DEFAULT_NATIVE_WIDTH}
-          height={DEFAULT_NATIVE_HEIGHT}
-          className="block h-full w-full object-contain object-center"
-          style={{ objectFit: 'contain', objectPosition: 'center' }}
-        />
+          {/* Subtle Top & Bottom Obsidian Seam Blending */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 z-[2] h-5 sm:h-8 lg:h-20 bg-gradient-to-b from-[#060607]/80 via-[#060607]/20 to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 z-[2] h-6 sm:h-10 lg:h-24 bg-gradient-to-t from-[#060607]/85 via-[#060607]/20 to-transparent"
+          />
 
-        {/* Subtle Top & Bottom Obsidian Seam Blending */}
+          {/* Gentle Outer-Margin Vignette for Floating Glass Card Legibility (Desktop Center Unobstructed) */}
+          <div
+            aria-hidden="true"
+            className="hidden lg:block absolute inset-0 z-[2]"
+            style={{
+              background:
+                'linear-gradient(90deg, rgba(6,6,7,0.38) 0%, rgba(6,6,7,0.08) 22%, rgba(6,6,7,0) 50%, rgba(6,6,7,0.08) 78%, rgba(6,6,7,0.38) 100%)',
+            }}
+          />
+        </div>
+
+        {/* Soft mobile/tablet bottom fade beneath pinned video stage */}
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 z-[2] h-20 bg-gradient-to-b from-[#060607]/80 via-[#060607]/25 to-transparent"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 z-[2] h-24 bg-gradient-to-t from-[#060607]/85 via-[#060607]/25 to-transparent"
-        />
-
-        {/* Gentle Outer-Margin Vignette for Floating Glass Card Legibility (Center Unobstructed) */}
-        <div
-          aria-hidden="true"
-          className="hidden md:block absolute inset-0 z-[2]"
-          style={{
-            background:
-              'linear-gradient(90deg, rgba(6,6,7,0.38) 0%, rgba(6,6,7,0.08) 22%, rgba(6,6,7,0) 50%, rgba(6,6,7,0.08) 78%, rgba(6,6,7,0.38) 100%)',
-          }}
+          className="lg:hidden pointer-events-none absolute inset-x-0 -bottom-5 h-5 bg-gradient-to-b from-[#060607] to-transparent"
         />
       </div>
 
-      {/* Scroll-Triggered Waypoint Overlays Riding Continuously Over One Pinned Stage */}
-      <div className="relative z-10 -mt-[100svh]">{children}</div>
+      {/* Scroll-Triggered Waypoints: flow cleanly below pinned video on mobile/tablet, overlay on desktop */}
+      <div className="relative z-10 lg:-mt-[100svh]">{children}</div>
     </div>
   );
 }

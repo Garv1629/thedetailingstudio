@@ -257,53 +257,53 @@ export default function App() {
           sequenceId="continuous"
           segments={CONTINUOUS_VIDEO_SEGMENTS}
           eagerPreload
-          activeWrapColourId={activeSection === 'colour' ? selectedWrapId : null}
-          activeCustomWrapHex={activeSection === 'colour' ? customWrapHex : null}
+          activeWrapColourId={selectedWrapId}
+          activeCustomWrapHex={customWrapHex}
           ariaLabel="Continuous automotive detailing scroll sequence from wash and interior care through paint correction, ceramic coating, and vinyl wrap"
         >
-          {/* Hero Viewport — Asymmetric European Atelier Editorial Composition */}
+          {/* Hero Viewport — Compact Unified Video + Editorial Stack on Mobile/Tablet; Full-Bleed Asymmetric Atelier on Desktop */}
           <section
             id="top"
             aria-labelledby="hero-heading"
-            className="relative min-h-[100svh] flex flex-col justify-between pt-24 sm:pt-28 lg:pt-32 pb-20 sm:pb-24 lg:pb-16 px-5 sm:px-8 md:pr-16 lg:px-16 lg:pr-20"
+            className="relative min-h-[calc(100svh-290px)] sm:min-h-[calc(100svh-320px)] md:min-h-[calc(100svh-500px)] lg:min-h-[100svh] flex flex-col justify-start lg:justify-between gap-5 sm:gap-7 lg:gap-0 pt-4 sm:pt-6 md:pt-8 lg:pt-32 pb-10 sm:pb-12 lg:pb-16 px-4 sm:px-8 lg:px-16 lg:pr-20"
           >
             {/* Upper-Left Swiss Atelier Masthead Eyebrow */}
             <div className="relative z-10 mx-auto w-full max-w-[1320px]">
-              <div className="hero-editorial-enter inline-flex flex-col gap-1.5">
-                <p className="font-sans-atelier text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-[0.34em] text-[#ECE8DF]">
+              <div className="hero-editorial-enter inline-flex flex-col gap-1 sm:gap-1.5">
+                <p className="font-sans-atelier text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.28em] sm:tracking-[0.34em] text-[#ECE8DF]">
                   THE DETAILING STUDIO
                 </p>
-                <p className="font-sans-atelier text-[9.5px] sm:text-[10.5px] font-medium uppercase tracking-[0.26em] text-[#E6C692]">
+                <p className="font-sans-atelier text-[9px] sm:text-[10.5px] font-medium uppercase tracking-[0.2em] sm:tracking-[0.26em] text-[#E6C692]">
                   GREATER NOIDA · AUTOMOTIVE ATELIER
                 </p>
                 <span
                   aria-hidden="true"
-                  className="mt-1.5 block h-px w-12 bg-gradient-to-r from-[#E6C692]/80 to-transparent"
+                  className="mt-1 sm:mt-1.5 block h-px w-10 sm:w-12 bg-gradient-to-r from-[#E6C692]/80 to-transparent"
                 />
               </div>
             </div>
 
             {/* Lower Editorial Asymmetric Split: Oversized Serif Statement (Left) + Quiet Copy & CTAs (Right) */}
-            <div className="relative z-10 mx-auto w-full max-w-[1320px] mt-auto pt-6 sm:pt-12">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-end">
+            <div className="relative z-10 mx-auto w-full max-w-[1320px] mt-1 sm:mt-3 lg:mt-auto lg:pt-12">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 items-end">
                 {/* Monumental Two-Register Cormorant Garamond Headline */}
                 <div className="hero-editorial-enter lg:col-span-7 xl:col-span-8">
                   <h1
                     id="hero-heading"
-                    className="font-editorial text-[clamp(2.65rem,11vw,3.3rem)] sm:text-[clamp(3.6rem,7.8vw,5.4rem)] lg:text-[clamp(4.4rem,6.9vw,6.85rem)] leading-[0.88] drop-shadow-[0_14px_40px_rgba(0,0,0,0.9)]"
+                    className="font-editorial text-[clamp(2.35rem,9.8vw,3.3rem)] sm:text-[clamp(3.3rem,7.2vw,4.8rem)] lg:text-[clamp(4.4rem,6.9vw,6.85rem)] leading-[0.88] drop-shadow-[0_14px_40px_rgba(0,0,0,0.9)]"
                   >
                     <span className="block hero-metallic-ink font-normal uppercase tracking-[0.045em] leading-[0.88]">
                       THE PURSUIT
                     </span>
-                    <span className="block italic font-normal hero-champagne-italic text-[1.088em] tracking-[-0.015em] leading-[0.94] mt-0.5 sm:mt-0 md:pl-[0.65em] lg:pl-[0.95em] pr-2">
+                    <span className="block italic font-normal hero-champagne-italic text-[1.088em] tracking-[-0.015em] leading-[0.94] mt-0.5 sm:mt-0 md:pl-[0.45em] lg:pl-[0.95em] pr-2">
                       of perfection.
                     </span>
                   </h1>
                 </div>
 
                 {/* Right Editorial Column: Description + Hairline + Primary & Secondary CTAs */}
-                <div className="hero-editorial-enter lg:col-span-5 xl:col-span-4 lg:pb-2.5 flex flex-col items-start gap-4 sm:gap-6">
-                  <p className="font-sans-atelier text-[14px] sm:text-[15px] font-normal leading-[1.68] tracking-[0.02em] text-[#ECE8DF] max-w-[34ch] sm:max-w-[38ch] text-balance drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)]">
+                <div className="hero-editorial-enter lg:col-span-5 xl:col-span-4 lg:pb-2.5 flex flex-col items-start gap-3.5 sm:gap-5 lg:gap-6">
+                  <p className="font-sans-atelier text-[13.5px] sm:text-[15px] font-normal leading-[1.6] sm:leading-[1.68] tracking-[0.02em] text-[#ECE8DF] max-w-[34ch] sm:max-w-[38ch] text-balance drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)]">
                     Refined detailing. Flawless surfaces. Lasting protection.
                   </p>
 
@@ -312,12 +312,12 @@ export default function App() {
                     className="block h-px w-full max-w-[340px] bg-gradient-to-r from-[#E6C692]/50 via-[#ECE8DF]/20 to-transparent"
                   />
 
-                  <div className="w-full sm:w-auto flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start sm:items-center lg:items-start xl:items-center gap-3.5 sm:gap-6">
+                  <div className="w-full sm:w-auto flex flex-col sm:flex-row lg:flex-col xl:flex-row items-start sm:items-center lg:items-start xl:items-center gap-3 sm:gap-5 lg:gap-6">
                     <MagneticButton
                       type="button"
                       maxOffsetPx={5}
                       onClick={() => handleOpenBooking('shield', false)}
-                      className="luxury-directions-cta group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full px-6 py-3.5 font-sans-atelier text-xs font-semibold uppercase tracking-[0.2em] text-[#060607] min-h-[48px] whitespace-nowrap shrink-0 cursor-pointer"
+                      className="luxury-directions-cta group w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full px-5 sm:px-6 py-3 sm:py-3.5 font-sans-atelier text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-[#060607] min-h-[46px] sm:min-h-[48px] whitespace-nowrap shrink-0 cursor-pointer"
                     >
                       <span>BOOK AN INSPECTION</span>
                       <ArrowRight
@@ -329,7 +329,7 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => handleNavigate('wash-clean')}
-                      className="hero-explore-link group self-start sm:self-auto inline-flex items-center justify-start gap-2.5 py-2 font-sans-atelier text-xs font-medium uppercase tracking-[0.22em] text-[#ECE8DF] hover:text-[#E6C692] transition-colors min-h-[44px] whitespace-nowrap shrink-0 cursor-pointer"
+                      className="hero-explore-link group self-start sm:self-auto inline-flex items-center justify-start gap-2.5 py-2 font-sans-atelier text-[11px] sm:text-xs font-medium uppercase tracking-[0.2em] sm:tracking-[0.22em] text-[#ECE8DF] hover:text-[#E6C692] transition-colors min-h-[44px] whitespace-nowrap shrink-0 cursor-pointer"
                     >
                       <span>EXPLORE OUR CRAFT</span>
                       <ArrowRight
@@ -348,7 +348,7 @@ export default function App() {
             sectionId="wash-clean"
             category={washCleanCategory}
             align="left"
-            minHeightClassName="min-h-[120svh]"
+            minHeightClassName="min-h-[42svh] sm:min-h-[44svh] md:min-h-[42svh] lg:min-h-[120svh]"
             isExpanded={servicesState.expandedCategoryId === washCleanCategory.id}
             selectedServiceId={
               servicesState.expandedCategoryId === washCleanCategory.id
@@ -366,7 +366,7 @@ export default function App() {
             sectionId="exterior-detailing"
             category={exteriorCategory}
             align="right"
-            minHeightClassName="min-h-[120svh]"
+            minHeightClassName="min-h-[42svh] sm:min-h-[44svh] md:min-h-[42svh] lg:min-h-[120svh]"
             isExpanded={servicesState.expandedCategoryId === exteriorCategory.id}
             selectedServiceId={
               servicesState.expandedCategoryId === exteriorCategory.id
@@ -384,7 +384,7 @@ export default function App() {
             sectionId="interior-detailing"
             category={interiorCategory}
             align="left"
-            minHeightClassName="min-h-[115svh]"
+            minHeightClassName="min-h-[42svh] sm:min-h-[44svh] md:min-h-[42svh] lg:min-h-[115svh]"
             isExpanded={servicesState.expandedCategoryId === interiorCategory.id}
             selectedServiceId={
               servicesState.expandedCategoryId === interiorCategory.id
@@ -402,7 +402,7 @@ export default function App() {
             sectionId="correction"
             category={polishingCategory}
             align="right"
-            minHeightClassName="min-h-[115svh]"
+            minHeightClassName="min-h-[42svh] sm:min-h-[44svh] md:min-h-[42svh] lg:min-h-[115svh]"
             isExpanded={servicesState.expandedCategoryId === polishingCategory.id}
             selectedServiceId={
               servicesState.expandedCategoryId === polishingCategory.id
@@ -420,7 +420,7 @@ export default function App() {
             sectionId="ceramic"
             category={protectionCategory}
             align="left"
-            minHeightClassName="min-h-[125svh]"
+            minHeightClassName="min-h-[44svh] sm:min-h-[46svh] md:min-h-[44svh] lg:min-h-[125svh]"
             isExpanded={
               servicesState.expandedCategoryId === protectionCategory.id
             }
@@ -440,11 +440,11 @@ export default function App() {
             <ServiceSection
               stage={colourStage}
               correctionSplit={38}
-              onCorrectionSplitChange={() => {}}
+              onCorrectionSplitChange={() => { }}
               ceramicBonded={true}
-              onCeramicBondedChange={() => {}}
+              onCeramicBondedChange={() => { }}
               ppfFinish="stealth"
-              onPpfFinishChange={() => {}}
+              onPpfFinishChange={() => { }}
               selectedWrapId={selectedWrapId}
               onSelectWrap={handleSelectWrap}
               customWrapHex={customWrapHex}

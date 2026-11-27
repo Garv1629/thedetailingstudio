@@ -25,7 +25,7 @@ export function StudioFooter({
   );
 
   return (
-    <footer className="relative z-10 mt-8 px-5 sm:px-8 lg:px-16 pb-24 pt-16 overflow-hidden">
+    <footer className="relative z-10 mt-4 sm:mt-8 px-4 sm:px-8 lg:px-16 pb-24 pt-12 sm:pt-16 overflow-hidden">
       {/* Subtle architectural top champagne catchlight */}
       <div
         aria-hidden="true"
@@ -37,9 +37,9 @@ export function StudioFooter({
       />
 
       <div className="mx-auto w-full max-w-[1320px]">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-[#ECE8DF]/12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 pb-10 sm:pb-12 border-b border-[#ECE8DF]/12">
           {/* Brand Signature Column */}
-          <div className="md:col-span-4 space-y-3">
+          <div className="sm:col-span-2 lg:col-span-4 space-y-3">
             <p className="font-editorial text-xl sm:text-2xl font-medium tracking-[0.08em] text-[#ECE8DF]">
               {STUDIO_INFO.brandName}
             </p>
@@ -54,7 +54,7 @@ export function StudioFooter({
           </div>
 
           {/* Navigation Column */}
-          <div className="md:col-span-2">
+          <div className="lg:col-span-2">
             <p className="font-mono-atelier text-[11px] tracking-[0.16em] text-[#E6C692] mb-4">
               Atelier
             </p>
@@ -77,7 +77,7 @@ export function StudioFooter({
           </div>
 
           {/* Location Column */}
-          <div className="md:col-span-3">
+          <div className="lg:col-span-3">
             <p className="font-mono-atelier text-[11px] tracking-[0.16em] text-[#E6C692] mb-4">
               Studio Bay
             </p>
@@ -102,7 +102,7 @@ export function StudioFooter({
           </div>
 
           {/* Direct Concierge Column */}
-          <div className="md:col-span-3">
+          <div className="lg:col-span-3">
             <p className="font-mono-atelier text-[11px] tracking-[0.16em] text-[#E6C692] mb-4">
               Concierge
             </p>

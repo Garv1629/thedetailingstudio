@@ -17,10 +17,10 @@ export function FaqSection({ onOpenBooking }: FaqSectionProps) {
     <section
       id="faq"
       aria-labelledby="heading-faq"
-      className="relative z-10 py-24 sm:py-32 px-5 sm:px-8 md:pr-16 lg:px-16 lg:pr-20 scroll-mt-4"
+      className="relative z-10 py-14 sm:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 lg:pr-20 scroll-mt-20 lg:scroll-mt-4"
     >
       <div className="mx-auto w-full max-w-[1320px]">
-        <div className="pt-14 border-t border-[#ECE8DF]/12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        <div className="pt-10 sm:pt-14 border-t border-[#ECE8DF]/12 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 items-start">
           {/* Left Sticky Editorial Intro Column */}
           <div className="lg:col-span-4 lg:sticky lg:top-28">
             <p className="font-mono-atelier text-[11px] tracking-[0.18em] text-[#E6C692]">
@@ -30,7 +30,7 @@ export function FaqSection({ onOpenBooking }: FaqSectionProps) {
               as="h2"
               id="heading-faq"
               text="Questions, answered."
-              className="mt-3 font-editorial font-normal tracking-[-0.015em] leading-[1.02] text-[clamp(2.3rem,4vw,3.5rem)] text-[#ECE8DF]"
+              className="mt-3 font-editorial font-normal tracking-[-0.015em] leading-[1.02] text-[clamp(2rem,7.5vw,3.5rem)] text-[#ECE8DF]"
             />
             <p className="mt-4 text-sm sm:text-[15px] leading-[1.7] text-[#C9C5BC] max-w-[34ch]">
               Clear guidance on paint correction, ceramic protection, wraps, and
@@ -88,9 +88,8 @@ export function FaqSection({ onOpenBooking }: FaqSectionProps) {
                   return (
                     <div
                       key={item.id}
-                      className={`transition-colors duration-300 ${
-                        isOpen ? 'bg-white/[0.03]' : 'bg-transparent'
-                      }`}
+                      className={`transition-colors duration-300 ${isOpen ? 'bg-white/[0.03]' : 'bg-transparent'
+                        }`}
                     >
                       <h3 className="m-0">
                         <button
@@ -101,24 +100,22 @@ export function FaqSection({ onOpenBooking }: FaqSectionProps) {
                           onClick={() =>
                             setOpenFaqId((prev) => toggleFaqItem(prev, item.id))
                           }
-                          className="group w-full flex items-center justify-between gap-4 px-6 sm:px-8 py-5 sm:py-6 text-left text-xs text-[#ECE8DF] cursor-pointer focus-visible:outline-none focus-visible:bg-white/[0.05]"
+                          className="group w-full flex items-center justify-between gap-3 sm:gap-4 px-4 sm:px-8 py-4 sm:py-6 text-left text-xs text-[#ECE8DF] cursor-pointer focus-visible:outline-none focus-visible:bg-white/[0.05]"
                         >
-                          <span className="flex items-baseline gap-4 min-w-0">
+                          <span className="flex items-baseline gap-3 sm:gap-4 min-w-0">
                             <span
-                              className={`font-mono-atelier text-xs tabular-nums shrink-0 transition-colors duration-200 ${
-                                isOpen
+                              className={`font-mono-atelier text-xs tabular-nums shrink-0 transition-colors duration-200 ${isOpen
                                   ? 'text-[#E6C692]'
                                   : 'text-[#A6A299] group-hover:text-[#E6C692]'
-                              }`}
+                                }`}
                             >
                               {item.number}.
                             </span>
                             <span
-                              className={`font-display-wide text-[15px] sm:text-[17px] font-semibold leading-snug transition-colors duration-200 ${
-                                isOpen
+                              className={`font-display-wide text-[14.5px] sm:text-[17px] font-semibold leading-snug transition-colors duration-200 ${isOpen
                                   ? 'text-[#ECE8DF]'
                                   : 'text-[#C9C5BC] group-hover:text-[#ECE8DF]'
-                              }`}
+                                }`}
                             >
                               {item.question}
                             </span>
@@ -126,11 +123,10 @@ export function FaqSection({ onOpenBooking }: FaqSectionProps) {
 
                           <span
                             aria-hidden="true"
-                            className={`inline-flex items-center justify-center w-8 h-8 rounded-full border shrink-0 transition-all duration-300 ${
-                              isOpen
+                            className={`inline-flex items-center justify-center w-8 h-8 rounded-full border shrink-0 transition-all duration-300 ${isOpen
                                 ? 'border-[#E6C692]/55 bg-[#E6C692]/12 text-[#E6C692] rotate-45'
                                 : 'border-[#ECE8DF]/16 text-[#A6A299] group-hover:border-[#ECE8DF]/35 group-hover:text-[#ECE8DF]'
-                            }`}
+                              }`}
                           >
                             <Plus className="w-4 h-4" />
                           </span>
@@ -141,14 +137,14 @@ export function FaqSection({ onOpenBooking }: FaqSectionProps) {
                         id={panelId}
                         role="region"
                         aria-labelledby={buttonId}
-                        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                          isOpen
+                        aria-hidden={!isOpen}
+                        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen
                             ? 'grid-rows-[1fr] opacity-100'
-                            : 'grid-rows-[0fr] opacity-0'
-                        }`}
+                            : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+                          }`}
                       >
-                        <div className="overflow-hidden">
-                          <p className="px-6 sm:px-8 pb-6 sm:pb-7 pl-[52px] sm:pl-[68px] text-sm sm:text-[15px] leading-[1.72] text-[#C9C5BC] max-w-[64ch]">
+                        <div className="overflow-hidden min-h-0">
+                          <p className="px-4 sm:px-8 pb-5 sm:pb-7 pl-[42px] sm:pl-[68px] text-[13.5px] sm:text-[15px] leading-[1.7] sm:leading-[1.72] text-[#C9C5BC] max-w-[64ch]">
                             {item.answer}
                           </p>
                         </div>

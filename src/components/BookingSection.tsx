@@ -26,7 +26,7 @@ export function BookingSection({
     <section
       id="book"
       aria-labelledby="heading-book"
-      className="relative z-10 pt-24 sm:pt-32 pb-8 px-5 sm:px-8 md:pr-16 lg:px-16 lg:pr-20"
+      className="relative z-10 pt-14 sm:pt-24 lg:pt-32 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-16 lg:pr-20 scroll-mt-20 lg:scroll-mt-4"
     >
       <div className="mx-auto w-full max-w-[1320px]">
         {/* Architectural Display Header */}
@@ -38,12 +38,12 @@ export function BookingSection({
           as="h2"
           id="heading-book"
           text="Book an inspection."
-          className="mt-3 font-editorial font-normal tracking-[-0.015em] leading-[0.94] text-[clamp(2.65rem,6.4vw,5.8rem)] text-[#ECE8DF] max-w-[11ch]"
+          className="mt-3 font-editorial font-normal tracking-[-0.015em] leading-[0.94] text-[clamp(2.2rem,8.5vw,5.8rem)] text-[#ECE8DF] max-w-[11ch]"
         />
 
         {/* Intro Row + Sculpted Champagne-Ivory Primary Action */}
-        <div className="mt-8 sm:mt-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <p className="text-base sm:text-[17px] leading-[1.68] text-[#C9C5BC] max-w-[46ch]">
+        <div className="mt-5 sm:mt-8 lg:mt-10 flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6">
+          <p className="text-[14.5px] sm:text-[17px] leading-[1.65] sm:leading-[1.68] text-[#C9C5BC] max-w-[46ch]">
             Visit our Zeta I, Greater Noida studio for a 30-minute paint depth
             audit. We inspect every panel under studio lighting and give you a
             clear, fixed INR estimate before any work begins.
@@ -112,16 +112,16 @@ export function BookingSection({
         )}
 
         {/* Three Curated Protection Tiers */}
-        <div className="mt-14 sm:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div className="mt-10 sm:mt-14 lg:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
           {PACKAGES.map((pkg, idx) => {
             const isFlagship = pkg.id === 'signature';
             const tierIndex = `0${idx + 1}`;
             return (
               <article
                 key={pkg.id}
-                className={`relative group flex flex-col justify-between rounded-[24px] p-7 sm:p-8 hover:-translate-y-1.5 overflow-hidden ${
+                className={`relative group flex flex-col justify-between rounded-[24px] p-5 sm:p-7 lg:p-8 hover:-translate-y-1.5 overflow-hidden ${
                   isFlagship
-                    ? 'package-signature-card'
+                    ? 'package-signature-card md:col-span-2 lg:col-span-1'
                     : 'glass-card-interactive'
                 }`}
               >

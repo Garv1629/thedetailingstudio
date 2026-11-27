@@ -216,7 +216,7 @@ export function InspectionModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#060607]/68 backdrop-blur-lg overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#060607]/68 backdrop-blur-lg overflow-y-auto"
       role="presentation"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -226,10 +226,10 @@ export function InspectionModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="booking-modal-title"
-        className="glass-surface-elevated relative w-full max-w-2xl my-auto rounded-2xl text-[#ECE8DF] max-h-[90vh] overflow-y-auto"
+        className="glass-surface-elevated relative w-full max-w-2xl my-auto rounded-2xl text-[#ECE8DF] max-h-[92svh] sm:max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-[#ECE8DF]/14 bg-[#0A0A0E]/78 px-6 py-5 backdrop-blur-xl">
+        <div className="sticky top-0 z-10 flex items-start justify-between gap-3 sm:gap-4 border-b border-[#ECE8DF]/14 bg-[#0A0A0E]/78 px-4 py-4 sm:px-6 sm:py-5 backdrop-blur-xl">
           <div>
             <p className="font-mono-atelier text-[11px] tracking-[0.14em] uppercase text-[#A6A299]">
               {STUDIO_INFO.brandName} · Zeta I, Greater Noida · {STUDIO_INFO.phoneDisplay}
@@ -328,7 +328,7 @@ export function InspectionModal({
           </div>
         ) : (
           /* Booking Form */
-          <form onSubmit={handleSubmit} noValidate className="p-6 sm:p-8 space-y-6">
+          <form onSubmit={handleSubmit} noValidate className="p-4 sm:p-8 space-y-5 sm:space-y-6">
             {/* Contact & Vehicle Fields */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>

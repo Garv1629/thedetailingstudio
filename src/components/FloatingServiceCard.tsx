@@ -139,19 +139,17 @@ export function FloatingServiceCard({
       onFocus={() => {
         if (!isRevealed) setIsRevealed(true);
       }}
-      className={`relative w-full max-w-[360px] ${
-        disableSelfReveal
+      className={`relative w-full max-w-full sm:max-w-[420px] lg:max-w-[360px] ${disableSelfReveal
           ? ''
           : prefersReducedMotion
             ? 'will-change-[opacity,transform] transition-none opacity-100 translate-y-0'
             : 'will-change-[opacity,transform] transition-[opacity,transform] duration-[760ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0'
-      } ${
-        disableSelfReveal
+        } ${disableSelfReveal
           ? ''
           : revealMotion.revealed
             ? 'opacity-100 translate-y-0'
             : 'opacity-0 translate-y-7'
-      } ${isExpanded ? 'z-30' : 'z-10'} ${className}`}
+        } ${isExpanded ? 'z-30' : 'z-10'} ${className}`}
     >
       {/* Compact Floating Glass Category Trigger */}
       <motion.div
@@ -163,35 +161,31 @@ export function FloatingServiceCard({
         }
         whileTap={prefersReducedMotion ? undefined : { scale: 0.992 }}
         transition={{ duration: 0.28, ease: LUXURY_EASE }}
-        className={`relative rounded-2xl overflow-hidden ${
-          isExpanded ? 'service-glass-card-active' : 'service-glass-card'
-        }`}
+        className={`relative rounded-2xl overflow-hidden ${isExpanded ? 'service-glass-card-active' : 'service-glass-card'
+          }`}
       >
         {/* Pointer-reactive specular border catchlight */}
         <div
           aria-hidden="true"
-          className={`service-glass-specular-border pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300 ${
-            specularActive && !prefersReducedMotion
+          className={`service-glass-specular-border pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300 ${specularActive && !prefersReducedMotion
               ? 'opacity-100'
               : 'opacity-0'
-          }`}
+            }`}
         />
 
         {/* Pointer-reactive soft glass surface sheen */}
         <div
           aria-hidden="true"
-          className={`service-glass-specular-sheen pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300 ${
-            specularActive && !prefersReducedMotion
+          className={`service-glass-specular-sheen pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300 ${specularActive && !prefersReducedMotion
               ? 'opacity-100'
               : 'opacity-0'
-          }`}
+            }`}
         />
 
         <div
           aria-hidden="true"
-          className={`pointer-events-none absolute inset-x-0 top-0 h-px transition-opacity duration-500 ${
-            isExpanded ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`pointer-events-none absolute inset-x-0 top-0 h-px transition-opacity duration-500 ${isExpanded ? 'opacity-100' : 'opacity-0'
+            }`}
           style={{
             background:
               'linear-gradient(90deg, transparent 6%, rgba(236, 232, 223, 0.56) 50%, transparent 94%)',
@@ -208,11 +202,10 @@ export function FloatingServiceCard({
         >
           <span className="flex items-center gap-3 min-w-0">
             <span
-              className={`inline-flex items-center justify-center w-8 h-8 rounded-full border shrink-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                isExpanded
+              className={`inline-flex items-center justify-center w-8 h-8 rounded-full border shrink-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isExpanded
                   ? 'border-[#ECE8DF]/38 bg-[#ECE8DF]/[0.12] text-[#ECE8DF]'
                   : 'border-[#ECE8DF]/16 bg-white/[0.04] text-[#C9C5BC] group-hover:border-[#ECE8DF]/30 group-hover:text-[#ECE8DF]'
-              }`}
+                }`}
             >
               <CategoryIcon icon={category.icon} />
             </span>
@@ -228,17 +221,15 @@ export function FloatingServiceCard({
           </span>
 
           <span
-            className={`inline-flex items-center justify-center w-7 h-7 rounded-full border shrink-0 transition-all duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              isExpanded
+            className={`inline-flex items-center justify-center w-7 h-7 rounded-full border shrink-0 transition-all duration-350 ease-[cubic-bezier(0.22,1,0.36,1)] ${isExpanded
                 ? 'border-[#ECE8DF]/32 bg-[#ECE8DF]/[0.10] text-[#ECE8DF]'
                 : 'border-[#ECE8DF]/14 text-[#A6A299] group-hover:border-[#ECE8DF]/28 group-hover:text-[#ECE8DF]'
-            }`}
+              }`}
           >
             <ChevronDown
               aria-hidden="true"
-              className={`w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                isExpanded ? 'rotate-180' : 'rotate-0'
-              }`}
+              className={`w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isExpanded ? 'rotate-180' : 'rotate-0'
+                }`}
             />
           </span>
         </button>
@@ -271,9 +262,9 @@ export function FloatingServiceCard({
               duration: prefersReducedMotion ? 0.01 : 0.44,
               ease: LUXURY_EASE,
             }}
-            className="mt-2.5 md:mt-0 md:absolute md:top-[calc(100%+10px)] md:left-0 md:right-0 md:z-30 overflow-hidden rounded-2xl service-glass-card-active bg-[#070709]/80"
+            className="mt-2.5 lg:mt-0 lg:absolute lg:top-[calc(100%+10px)] lg:left-0 lg:right-0 lg:z-30 overflow-hidden rounded-2xl service-glass-card-active bg-[#070709]/80"
           >
-            <div className="px-4 sm:px-5 py-2.5 max-h-[68vh] md:max-h-[430px] overflow-y-auto">
+            <div className="px-4 sm:px-5 py-2.5 max-h-[44svh] sm:max-h-[48svh] lg:max-h-[430px] overflow-y-auto">
               <ul className="divide-y divide-[#ECE8DF]/[0.08]">
                 {category.services.map((service, index) => {
                   const isSelected = selectedServiceId === service.id;
@@ -300,20 +291,18 @@ export function FloatingServiceCard({
                         aria-expanded={isSelected}
                         aria-controls={detailId}
                         onClick={() => onToggleService(service.id)}
-                        className={`group relative w-full flex items-center justify-between gap-3 py-3.5 px-2 text-left min-h-[48px] cursor-pointer overflow-hidden rounded-lg transition-colors duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                          isSelected
+                        className={`group relative w-full flex items-center justify-between gap-3 py-3.5 px-2 text-left min-h-[48px] cursor-pointer overflow-hidden rounded-lg transition-colors duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] ${isSelected
                             ? 'bg-[#ECE8DF]/[0.085]'
                             : 'hover:bg-[#ECE8DF]/[0.045]'
-                        }`}
+                          }`}
                       >
                         {/* Soft hover / active glow */}
                         <span
                           aria-hidden="true"
-                          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                            isSelected
+                          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isSelected
                               ? 'opacity-100'
                               : 'opacity-0 group-hover:opacity-100'
-                          }`}
+                            }`}
                           style={{
                             background:
                               'radial-gradient(70% 130% at 10% 50%, rgba(236, 232, 223, 0.09), transparent 74%)',
@@ -323,35 +312,31 @@ export function FloatingServiceCard({
                         {/* Thin gradient highlight hairline */}
                         <span
                           aria-hidden="true"
-                          className={`service-row-highlight pointer-events-none absolute left-0 right-0 bottom-0 h-px origin-left transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                            isSelected
+                          className={`service-row-highlight pointer-events-none absolute left-0 right-0 bottom-0 h-px origin-left transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${isSelected
                               ? 'opacity-100 scale-x-100'
                               : 'opacity-0 scale-x-75 group-hover:opacity-85 group-hover:scale-x-100'
-                          }`}
+                            }`}
                         />
 
                         {/* Service label with subtle rightward hover shift */}
                         <span
-                          className={`relative z-10 flex items-center gap-2.5 min-w-0 transition-transform duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                            isSelected
+                          className={`relative z-10 flex items-center gap-2.5 min-w-0 transition-transform duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] ${isSelected
                               ? 'translate-x-1.5'
                               : 'sm:group-hover:translate-x-1.5'
-                          }`}
+                            }`}
                         >
                           <span
                             aria-hidden="true"
-                            className={`h-3 w-[1.5px] rounded-full transition-all duration-250 ${
-                              isSelected
+                            className={`h-3 w-[1.5px] rounded-full transition-all duration-250 ${isSelected
                                 ? 'bg-[#ECE8DF] opacity-100'
                                 : 'bg-[#ECE8DF]/45 opacity-0 group-hover:opacity-100'
-                            }`}
+                              }`}
                           />
                           <span
-                            className={`text-[14px] leading-snug transition-colors duration-250 ${
-                              isSelected
+                            className={`text-[14px] leading-snug transition-colors duration-250 ${isSelected
                                 ? 'text-[#ECE8DF] font-medium'
                                 : 'text-[#C9C5BC] group-hover:text-[#ECE8DF]'
-                            }`}
+                              }`}
                           >
                             {service.name}
                           </span>
@@ -360,11 +345,10 @@ export function FloatingServiceCard({
                         {/* Minimal forward-gliding arrow */}
                         <ArrowRight
                           aria-hidden="true"
-                          className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                            isSelected
+                          className={`relative z-10 w-3.5 h-3.5 shrink-0 transition-all duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] ${isSelected
                               ? 'text-[#ECE8DF] rotate-90'
                               : 'text-[#A6A299] group-hover:text-[#ECE8DF] group-hover:translate-x-1'
-                          }`}
+                            }`}
                         />
                       </button>
 

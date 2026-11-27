@@ -57,7 +57,7 @@ export function ConciergeDock({ onOpenBooking }: ConciergeDockProps) {
           id="studio-concierge-menu"
           role="region"
           aria-label="Direct studio concierge"
-          className="glass-surface-elevated w-[264px] rounded-2xl p-4 shadow-[0_24px_64px_rgba(0,0,0,0.68)]"
+          className="glass-surface-elevated w-[min(264px,calc(100vw-2rem))] rounded-2xl p-4 shadow-[0_24px_64px_rgba(0,0,0,0.68)]"
         >
           <div className="pb-3 border-b border-[#ECE8DF]/14">
             <p className="font-display-wide text-sm font-semibold text-[#ECE8DF]">
@@ -128,7 +128,7 @@ export function ConciergeDock({ onOpenBooking }: ConciergeDockProps) {
         aria-controls="studio-concierge-menu"
         aria-label={isOpen ? 'Close studio concierge' : 'Open studio concierge'}
         onClick={() => setIsOpen((prev) => !prev)}
-        className="inline-flex items-center gap-2.5 rounded-full border border-[#ECE8DF]/25 bg-white/[0.05] backdrop-blur-xl px-4 py-2.5 text-xs font-medium text-[#ECE8DF] hover:border-[#ECE8DF]/45 transition-all duration-200 min-h-[44px] cursor-pointer shadow-[0_14px_40px_rgba(0,0,0,0.48)]"
+        className="inline-flex items-center gap-2 sm:gap-2.5 rounded-full border border-[#ECE8DF]/25 bg-white/[0.05] backdrop-blur-xl px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs font-medium text-[#ECE8DF] hover:border-[#ECE8DF]/45 transition-all duration-200 min-h-[40px] sm:min-h-[44px] cursor-pointer shadow-[0_14px_40px_rgba(0,0,0,0.48)]"
       >
         {isOpen ? (
           <X className="w-4 h-4 text-[#ECE8DF]" aria-hidden="true" />

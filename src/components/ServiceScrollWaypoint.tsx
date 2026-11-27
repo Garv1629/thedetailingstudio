@@ -137,12 +137,12 @@ export function ServiceScrollWaypoint({
       ref={sectionRef}
       id={sectionId}
       aria-label={`${category.title} studio discipline`}
-      className={`relative z-10 ${minHeightClassName} flex flex-col justify-end md:justify-start pt-28 md:pt-[22vh] pb-16 md:pb-32 px-5 sm:px-8 md:pr-16 lg:px-16 lg:pr-20`}
+      className={`relative z-10 ${minHeightClassName} flex flex-col justify-start pt-5 sm:pt-8 pb-8 sm:pb-10 lg:pt-[22vh] lg:pb-32 px-4 sm:px-8 lg:px-16 lg:pr-20 scroll-mt-[295px] sm:scroll-mt-[330px] md:scroll-mt-[510px] lg:scroll-mt-0`}
     >
       <div className="mx-auto w-full max-w-[1320px]">
         <div
           className={`flex flex-col ${
-            isRight ? 'md:items-end' : 'md:items-start'
+            isRight ? 'lg:items-end' : 'lg:items-start'
           }`}
         >
           <motion.div
@@ -161,7 +161,7 @@ export function ServiceScrollWaypoint({
                     transformOrigin: isRight ? 'right center' : 'left center',
                   }
             }
-            className="w-full max-w-[360px] will-change-[opacity,transform,filter]"
+            className="w-full max-w-full sm:max-w-[420px] lg:max-w-[360px] will-change-[opacity,transform,filter]"
           >
             <FloatingServiceCard
               category={category}

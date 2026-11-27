@@ -26,22 +26,22 @@ export function ClientReviewsShowcase() {
     <div
       id="reviews"
       aria-label="Client testimonials and studio results"
-      className="mt-24 sm:mt-28 pt-14 border-t border-[#ECE8DF]/12"
+      className="mt-14 sm:mt-20 lg:mt-28 pt-10 sm:pt-14 border-t border-[#ECE8DF]/12"
     >
       {/* Clean Editorial Section Heading */}
-      <div className="mb-10">
-        <h3 className="font-editorial text-[clamp(2.1rem,3.6vw,3.15rem)] font-normal tracking-[-0.015em] text-[#ECE8DF] leading-[1.06]">
+      <div className="mb-7 sm:mb-10">
+        <h3 className="font-editorial text-[clamp(1.85rem,7vw,3.15rem)] font-normal tracking-[-0.015em] text-[#ECE8DF] leading-[1.06]">
           Trusted by collectors &amp; daily drivers.
         </h3>
       </div>
 
       {/* Asymmetric Split Luxury Showcase */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-stretch">
         {/* Left 5 Columns: Ultra-Premium Champagne-Beveled Editorial Review Card */}
         <article
           aria-live="polite"
           data-testid="active-review-card"
-          className="review-wet-glass-card relative lg:col-span-5 rounded-[28px] p-8 sm:p-10 overflow-hidden flex flex-col justify-between min-h-[410px] sm:min-h-[450px]"
+          className="review-wet-glass-card relative lg:col-span-5 rounded-[24px] sm:rounded-[28px] p-6 sm:p-8 lg:p-10 overflow-hidden flex flex-col justify-between min-h-0 lg:min-h-[450px]"
         >
           {/* Precision double-hairline inner frame */}
           <div
@@ -75,7 +75,7 @@ export function ClientReviewsShowcase() {
               <div className="flex items-center gap-3.5">
                 <span
                   aria-hidden="true"
-                  className="block font-editorial text-[64px] leading-[0.72] bg-gradient-to-b from-[#F8EAD0] via-[#E6C692] to-[#9E7C48] bg-clip-text text-transparent select-none"
+                  className="block font-editorial text-[48px] sm:text-[64px] leading-[0.72] bg-gradient-to-b from-[#F8EAD0] via-[#E6C692] to-[#9E7C48] bg-clip-text text-transparent select-none"
                 >
                   “
                 </span>
@@ -141,7 +141,7 @@ export function ClientReviewsShowcase() {
 
         {/* Right 7 Columns: Clean Champagne-Gold Framed Studio Vehicle Showcase */}
         <div className="lg:col-span-7 flex">
-          <div className="review-gold-frame relative w-full rounded-[28px] overflow-hidden aspect-[16/10.5] lg:aspect-auto lg:min-h-[450px] bg-[#08080A]">
+          <div className="review-gold-frame relative w-full rounded-[24px] sm:rounded-[28px] overflow-hidden aspect-[16/10] lg:aspect-auto lg:min-h-[450px] bg-[#08080A]">
             {imageErrorId !== activeReview.id ? (
               <img
                 key={activeReview.id}
@@ -208,11 +208,10 @@ export function ClientReviewsShowcase() {
                     >
                       <span
                         aria-hidden="true"
-                        className={`block rounded-full transition-all duration-300 ${
-                          isCurrent
+                        className={`block rounded-full transition-all duration-300 ${isCurrent
                             ? 'w-3.5 h-3.5 bg-[#E6C692] shadow-[0_0_16px_rgba(230,198,146,0.95)]'
                             : 'w-2 h-2 bg-[#E6C692]/45 hover:bg-[#E6C692]/80'
-                        }`}
+                          }`}
                       />
                     </button>
                   );

@@ -38,11 +38,11 @@ export function MarqueeBand() {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 py-14 sm:py-20 overflow-hidden select-none pointer-events-none border-y border-[#ECE8DF]/16 bg-white/[0.03] backdrop-blur-md"
+      className="relative z-10 py-8 sm:py-14 lg:py-20 overflow-hidden select-none pointer-events-none border-y border-[#ECE8DF]/16 bg-white/[0.03] backdrop-blur-md"
     >
       <div
         ref={trackRef}
-        className="flex whitespace-nowrap will-change-transform font-editorial font-normal uppercase leading-none text-[clamp(3.4rem,10vw,9.5rem)] tracking-[0.04em]"
+        className="flex whitespace-nowrap will-change-transform font-editorial font-normal uppercase leading-none text-[clamp(2.4rem,9.5vw,9.5rem)] tracking-[0.04em]"
       >
         {[0, 1, 2].map((repeat) => (
           <span key={repeat} className="inline-flex items-center marquee-stroke pr-8">

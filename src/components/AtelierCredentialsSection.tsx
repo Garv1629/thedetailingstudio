@@ -94,7 +94,7 @@ export function AtelierCredentialsSection() {
     <section
       id="studio"
       aria-label="Greater Noida studio location and directions"
-      className="relative z-10 pt-28 sm:pt-32 pb-16 sm:pb-24 px-5 sm:px-8 md:pr-16 lg:px-16 lg:pr-20 scroll-mt-4"
+      className="relative z-10 pt-14 sm:pt-20 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 px-4 sm:px-8 lg:px-16 lg:pr-20 scroll-mt-20 lg:scroll-mt-4"
     >
       <div className="mx-auto w-full max-w-[1220px]">
         {/* Flagship Horizontal Smoked-Obsidian Showroom Monolith */}
@@ -108,19 +108,17 @@ export function AtelierCredentialsSection() {
           {/* Pointer-reactive specular border & surface reflection */}
           <div
             aria-hidden="true"
-            className={`service-glass-specular-border pointer-events-none absolute inset-0 rounded-3xl transition-opacity duration-300 ${
-              locationSpecular && !prefersReducedMotion
+            className={`service-glass-specular-border pointer-events-none absolute inset-0 rounded-3xl transition-opacity duration-300 ${locationSpecular && !prefersReducedMotion
                 ? 'opacity-100'
                 : 'opacity-0'
-            }`}
+              }`}
           />
           <div
             aria-hidden="true"
-            className={`service-glass-specular-sheen pointer-events-none absolute inset-0 rounded-3xl transition-opacity duration-300 ${
-              locationSpecular && !prefersReducedMotion
+            className={`service-glass-specular-sheen pointer-events-none absolute inset-0 rounded-3xl transition-opacity duration-300 ${locationSpecular && !prefersReducedMotion
                 ? 'opacity-100'
                 : 'opacity-0'
-            }`}
+              }`}
           />
           {/* Top champagne architectural catchlight */}
           <div
@@ -133,7 +131,7 @@ export function AtelierCredentialsSection() {
           />
 
           {/* Left 7 Columns: Exact Live Google Maps Embed for THE DETAILING STUDIO GREATER NOIDA */}
-          <div className="group relative z-10 lg:col-span-7 overflow-hidden bg-[#070709] border-b lg:border-b-0 lg:border-r border-[#ECE8DF]/14 min-h-[320px] sm:min-h-[380px] lg:min-h-[450px]">
+          <div className="group relative z-10 lg:col-span-7 overflow-hidden bg-[#070709] border-b lg:border-b-0 lg:border-r border-[#ECE8DF]/14 min-h-[260px] sm:min-h-[360px] lg:min-h-[450px]">
             <iframe
               title="THE DETAILING STUDIO GREATER NOIDA — Exact Studio Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112204.9949766371!2d77.37099319726559!3d28.497427400000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ceb724aafb68f%3A0x3b07d21df20a0e33!2sTHE%20DETAILING%20STUDIO%20GREATER%20NOIDA!5e0!3m2!1sen!2sin!4v1795775203580!5m2!1sen!2sin"
@@ -163,9 +161,9 @@ export function AtelierCredentialsSection() {
           </div>
 
           {/* Right 5 Columns: Private Showroom Arrival & Sculpted Get Directions CTA */}
-          <div className="relative z-10 lg:col-span-5 p-6 sm:p-8 lg:p-9 flex flex-col justify-between gap-7">
+          <div className="relative z-10 lg:col-span-5 p-5 sm:p-8 lg:p-9 flex flex-col justify-between gap-5 sm:gap-7">
             <div>
-              <div className="flex items-baseline justify-between gap-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 sm:gap-3">
                 <p className="font-mono-atelier text-[11px] tracking-[0.16em] text-[#E6C692]">
                   Private Detailing Bay
                 </p>
@@ -174,7 +172,7 @@ export function AtelierCredentialsSection() {
                 </span>
               </div>
 
-              <h2 className="mt-2 font-editorial text-[30px] sm:text-[34px] font-medium tracking-[-0.01em] text-[#ECE8DF] leading-[1.08]">
+              <h2 className="mt-2 font-editorial text-[clamp(1.65rem,6vw,2.125rem)] font-medium tracking-[-0.01em] text-[#ECE8DF] leading-[1.08]">
                 Visit the Studio
               </h2>
 

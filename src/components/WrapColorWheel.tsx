@@ -197,7 +197,7 @@ export function WrapColorWheel({
   const brightnessPercent = Math.round(val * 100);
 
   return (
-    <div className="mt-4 flex items-center gap-4">
+    <div className="mt-4 flex items-center gap-3 sm:gap-4">
       {/* Interactive Circular HSV Color Wheel */}
       <div
         role="application"
@@ -240,7 +240,7 @@ export function WrapColorWheel({
         <div
           role="group"
           aria-label="Signature wrap presets"
-          className="flex items-center gap-2"
+          className="flex flex-wrap items-center gap-2"
         >
           {WRAP_COLOURS.map((colour) => {
             const isSelected = !isCustomActive && colour.id === selectedWrapId;
@@ -252,11 +252,10 @@ export function WrapColorWheel({
                 aria-label={colour.name}
                 aria-pressed={isSelected}
                 onClick={() => onSelectWrap(colour.id)}
-                className={`w-7 h-7 rounded-full shrink-0 text-xs text-[#ECE8DF] bg-white/[0.05] transition-transform duration-150 cursor-pointer border border-[#ECE8DF]/25 ${
-                  isSelected
+                className={`w-7 h-7 rounded-full shrink-0 text-xs text-[#ECE8DF] bg-white/[0.05] transition-transform duration-150 cursor-pointer border border-[#ECE8DF]/25 ${isSelected
                     ? 'scale-110 ring-2 ring-[#ECE8DF]/65 ring-offset-2 ring-offset-[#0D0D10]'
                     : 'opacity-85 hover:opacity-100 hover:scale-105'
-                }`}
+                  }`}
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${colour.swatchHex} 0%, ${colour.swatchSecondaryHex} 100%)`,
                 }}
